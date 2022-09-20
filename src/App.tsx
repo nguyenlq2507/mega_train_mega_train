@@ -1,14 +1,17 @@
 import React, { useState, useEffect } from "react";
-import { Modal } from "antd";
+import { Input, Modal, Pagination } from "antd";
 
 import { listProductAPI } from "./components/Services/API";
-
 import { ListProduct } from "./components/ListProduct";
 import { AddProductForm } from "./components/AddProductForm";
+import { SearchProduct } from "./components/SearchProduct";
 
 import "antd/dist/antd.css";
 import "./App.css";
 import { Product } from "./components/TypeInterFace";
+import InputGroup from "react-bootstrap/InputGroup";
+import FormControl from "react-bootstrap/FormControl";
+import Button from "react-bootstrap/Button";
 
 function App() {
   const [isModalVisible, setIsModalVisible] = useState(false);
@@ -69,6 +72,7 @@ function App() {
       }
       return product;
     });
+
     handleClose();
     try {
       await listProductAPI.update(itemProduct.id, itemProduct);
@@ -77,15 +81,51 @@ function App() {
       console.log(error);
     }
   };
-  
+
+  const handleSearch = async (itemProduct: Product) => {
+    const search = listProduct.map((name) => {
+      if (name.name === itemProduct.name) {
+        console.log("aaa", itemProduct);
+        return {
+          ...itemProduct,
+        };
+      }
+    });
+  };
+
   return (
     <div className="App">
       <h2>List product</h2>
-      <div className="header-add-user">
-        <button className="ant-btn ant-btn-primary" onClick={handleOpenModal}>
-          Add New Product
-        </button>
+      <div className="header-add-user col-12">
+        <div className="col-4 ">
+          <button className="ant-btn ant-btn-primary" onClick={handleOpenModal}>
+            Add New Product
+          </button>
+        </div>
+        {/* <SearchProduct list={listProduct} onSearch={handleSearch} /> */}
+        <div className="col-4 ">
+          <InputGroup>
+            <FormControl aria-label="Search" aria-describedby="basic-addon2" />
+            <Button
+              className="ant-btn ant-btn-search"
+              variant="outline-secondary"
+              id="button-addon2"
+              // onClick={handleSearch}
+            >
+              Search
+            </Button>
+          </InputGroup>
+        </div>
+        <div className="col-4 " id="motgiua">
+          <button className="ant-btn ant-btn-dashed" onClick={handleOpenModal}>
+            Import
+          </button>
+          <button className="ant-btn ant-btn-dashed" onClick={handleOpenModal}>
+            Export
+          </button>
+        </div>
       </div>
+
       <ListProduct
         list={listProduct}
         onDelete={handleDelete}
@@ -104,6 +144,7 @@ function App() {
           onUpdate={handleUpdate}
         />
       </Modal>
+      <SearchProduct list={listProduct} onSearch={handleSearch} />
     </div>
   );
 }

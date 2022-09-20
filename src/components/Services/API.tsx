@@ -18,11 +18,15 @@ export const listProductAPI = {
     axiosAPI.post(url, itemProduct);
   },
   delete(id: string) {
-    const url = `test//${id}`;
+    const url = `test/${id}`;
     axiosAPI.delete(url);
   },
   update(id: string, itemProduct: Product) {
-    const url = `test//${id}`;
+    const url = `test/${id}`;
+    axiosAPI.put(url, itemProduct);
+  },
+  search(name: string, itemProduct: Product) {
+    const url = `test/${name}`;
     axiosAPI.put(url, itemProduct);
   },
 };

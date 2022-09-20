@@ -68,11 +68,11 @@ export const ListProduct: React.FC<Props> = ({ list, onDelete, onEdit }) => {
               <td>{item.content}</td>
               <td>{item.price}</td>
               <td>
-                <Button variant="warning" onClick={() => onEdit(item)}>
+                <Button className="ant-btn ant-btn-warning ant-btn-warning" variant="warning" onClick={() => onEdit(item)}>
                   Edit
                 </Button>
                 <Button
-                  className="mg-l"
+                  className="mg-l ant-btn ant-btn-primary ant-btn-dangerous"
                   variant="danger"
                   onClick={() => onDelete(item.id)}
                 >

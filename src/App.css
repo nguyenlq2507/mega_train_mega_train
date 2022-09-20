@@ -17,3 +17,27 @@
 .field-input-group {
   margin-bottom: 20px;
 }
+.header-add-user{
+  display: flex;
+  align-items: center;
+}
+
+#motgiua{
+display: flex;
+justify-content: center;
+gap: 11px;
+}
+.ant-btn-warning{
+  background-color: #f5b700;
+  color: white;
+}
+.btn:first-child:hover{
+  color: white;
+}
+input.form-control {
+  height:32px;
+}
+.ant-btn-dashed:hover{
+  color: #45ce4b;
+  border-color: #45ce4b;
+}
